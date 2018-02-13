@@ -16,15 +16,15 @@ public class Car_model extends BaseEntity{
 	@Column(name="model_title")
 	private String model_title;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="car_color_id")
 	private Car_color carColor;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="engine_capacity_id")
 	private Car_engine_capacity engineCapacity;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="fuel_type_id")
 	private Car_fuel_type fuel_type;
 	
@@ -53,7 +53,7 @@ public class Car_model extends BaseEntity{
 		this.fuel_type = fuel_type;
 	}
 	
-	@OneToOne(mappedBy="carModel",cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="carModel",fetch=FetchType.LAZY)
 	private Car_make carMake;
 	
 	public Car_make getCarMake() {

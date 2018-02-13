@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ public class Car_make extends BaseEntity{
 	@Column(name="manufacture_year",columnDefinition="Decimal(4,0)")//max=9999.0
 	private BigDecimal manufacture_year;
 	
-	@OneToOne(mappedBy="carMake")
+	@OneToOne(mappedBy="carMake",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Car car;
 	
 	
@@ -38,7 +39,7 @@ public class Car_make extends BaseEntity{
 	}
 	
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="car_model_id")
 	private Car_model carModel;
 	

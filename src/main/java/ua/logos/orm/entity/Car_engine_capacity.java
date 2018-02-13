@@ -15,7 +15,9 @@ public class Car_engine_capacity extends BaseEntity {
 	@OneToMany(mappedBy="engineCapacity")
 	private List<Car_model> carModels;
 	
-	
+	public Car_engine_capacity(){
+		
+	}
 
 	public List<Car_model> getCarModels() {
 		return carModels;

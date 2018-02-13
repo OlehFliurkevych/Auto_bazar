@@ -2,8 +2,10 @@ package ua.logos.orm.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,14 +15,14 @@ import javax.persistence.Table;
 @Table(name="car")
 public class Car extends BaseEntity{
 	
-	@Column(name="sell_price",columnDefinition="Decimal(5,2)")
+	@Column(name="sell_price",columnDefinition="Decimal(6,2)")
 	private BigDecimal sell_price;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="car_make_id")
 	private Car_make carMake;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name="car_seller_id")
 	private Car_seller carSeller;
 	
@@ -40,14 +42,9 @@ public class Car extends BaseEntity{
 		
 	}
 
-	
-
-	public Car(BigDecimal sell_price, Car_make carMake, Car_seller carSeller) {
+	public Car(BigDecimal sell_price) {
 		this.sell_price = sell_price;
-		this.carMake = carMake;
-		this.carSeller = carSeller;
 	}
-
 	
 	@Override
 	public String toString() {
